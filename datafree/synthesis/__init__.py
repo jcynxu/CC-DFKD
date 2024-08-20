@@ -1,2 +1,2 @@
 from .base import BaseSynthesis
-from .gapssg_generative import Synthesizer
+from .ccdfkd_generative import Synthesizer
