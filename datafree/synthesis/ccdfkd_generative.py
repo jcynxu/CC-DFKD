@@ -240,20 +240,20 @@ class Synthesizer(BaseSynthesis):
                 else:
                     loss_l2 = - F.mse_loss(s_logit, t_logit.detach())
                         # or loss_l2 = - torch.log(torch.norm(t_logit - s_logit, 2))
-                loss_IKD = self.co_alpha * loss_l2
-                loss_G += loss_IKD
+                loss_cadv1 = self.co_alpha * loss_l2
+                loss_G += loss_cadv1
 
                 loss_BN = sum([h.r_feature for h in self.hooks])
                 loss_G += self.co_beta * loss_BN
 
                 features = torch.cat([s_fea.unsqueeze(1), t_fea.unsqueeze(1)], dim=1)
                 sim_criterion = get_sim_criterion(self, self.device)
-                loss_SCL = sim_criterion(features, labels=labels)
-                loss_G += self.co_gamma * loss_SCL
+                loss_ccl = sim_criterion(features, labels=labels)
+                loss_G += self.co_gamma * loss_ccl
 
-                loss_CE = F.cross_entropy(F.softmax(t_logit, dim=1), labels, reduction='mean')
+                loss_ccls = F.cross_entropy(F.softmax(t_logit, dim=1), labels, reduction='mean')
 
-                loss_G += self.co_eta * loss_CE
+                loss_G += self.co_eta * loss_ccls
             '''
             with torch.no_grad():
                 if best_cost > loss_G.item() or best_inputs is None:
