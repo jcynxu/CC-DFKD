@@ -190,7 +190,7 @@ class Synthesizer(BaseSynthesis):
         
         #inputs = torch.randn( size=(self.synthesis_batch_size, *self.img_size), device=self.device ).requires_grad_()
         best_inputs = None
-        z = torch.randn(size=(self.synthesis_batch_size, self.nz), device=self.device).requires_grad_() 
+        z = torch.randn(size=(self.synthesis_batch_size, self.nz), device=self.device).requires_grad_()
         if targets is None:
             targets = torch.randint(low=0, high=self.num_classes, size=(self.synthesis_batch_size,))
             targets = targets.sort()[0] # sort for better visualization
@@ -219,7 +219,8 @@ class Synthesizer(BaseSynthesis):
             #############################################
             with torch.cuda.amp.autocast():
                 loss_G = 0
-                z = nn.Parameter(torch.randn((self.sample_batch_size, self.nz, 1, 1)).to(self.device))
+                z = torch.randn(size=(self.synthesis_batch_size, self.nz), device=self.device).requires_grad_()
+                #z = nn.Parameter(torch.randn((self.sample_batch_size, self.nz, 1, 1)).to(self.device))
                 labels = torch.randint(0, self.num_classes, (self.sample_batch_size,), dtype=torch.long).to(self.device)
                 optimizer_G = torch.optim.Adam([{'params': generator2.parameters()}, {'params': [z]}], self.lr_g,
                                                betas=[0.5, 0.999])
@@ -258,19 +259,18 @@ class Synthesizer(BaseSynthesis):
             with torch.no_grad():
                 if best_cost > loss_G.item() or best_inputs is None:
                     best_cost = loss_G.item()
-                    best_inputs = inputs.data
+                    best_inputs = inputs.data  
+                    return {"synthetic": best_inputs}
             '''
+
             optimizer.zero_grad()
             loss_G.backward()
             optimizer.step()
 
         '''
-        
-        # save best inputs and reset data iter
-        self.data_pool.add( best_inputs )
-        
-        return {"synthetic": best_inputs}
         '''
+        # save best inputs and reset data iter
+        # self.data_pool.add( best_inputs )
         self.student.train()
         dst = self.data_pool.get_dataset(transform=self.transform)
         if self.init_dataset is not None:
@@ -284,5 +284,6 @@ class Synthesizer(BaseSynthesis):
             dst, batch_size=self.sample_batch_size, shuffle=(train_sampler is None),
             num_workers=4, pin_memory=True, sampler=train_sampler)
         self.data_iter = DataIter(loader)
+
     def sample(self):
         return self.data_iter.next()
