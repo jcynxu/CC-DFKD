@@ -28,7 +28,7 @@ import time
 parser = argparse.ArgumentParser(description='Data-free Knowledge Distillation')
 
 # Data Free
-parser.add_argument('--method', required=True, choices=['zskt', 'dfad', 'dafl', 'deepinv', 'dfq', 'cmi','gapssg','CC-DFKD'])
+parser.add_argument('--method', required=True, choices=['zskt', 'dfad', 'dafl', 'deepinv', 'dfq', 'cmi','CC-DFKD','CC-DFKD'])
 parser.add_argument('--adv', default=0, type=float, help='scaling factor for adversarial distillation')
 parser.add_argument('--bn', default=0, type=float, help='scaling factor for BN regularization')
 parser.add_argument('--oh', default=0, type=float, help='scaling factor for one hot loss (cross entropy)')
@@ -257,7 +257,7 @@ def main_worker(gpu, ngpus_per_node, args):
         args.synthesis_batch_size = args.batch_size
     
     
-    if args.method=='gapssg':
+    if args.method=='CC-DFKD':
         nz = 256
         generator = datafree.models.generator.Generator(nz=nz, ngf=64, img_size=32, nc=3)
         generator = prepare_model(generator)

@@ -100,7 +100,7 @@ class Synthesizer(BaseSynthesis):
                  feature_layers=None, bank_size=40960, n_neg=4096, head_dim=128, init_dataset=None,
                  iterations=100, lr_g=0.1, progressive_scale=False,
                  synthesis_batch_size=128, sample_batch_size=128, 
-                 save_dir='run/gapssg', transform=None,
+                 save_dir='run/CC-DFKD', transform=None,
                  autocast=None, use_fp16=False, 
                  normalizer=None, device='cpu', distributed=False,dataset=None,
                  co_alpha=1, co_beta=1, co_gamma=1, co_eta=1, temp=0.07, use_amp=False,lr_z=0.01):
