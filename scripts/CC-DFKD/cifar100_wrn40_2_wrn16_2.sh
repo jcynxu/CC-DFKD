@@ -5,7 +5,7 @@ python datafree_kd.py \
 --synthesis_batch_size 256 \
 --teacher wrn40_2 \
 --student wrn16_2 \
---lr 0.08 \
+--lr 0.2 \
 --kd_steps 400 \
 --ep_steps 400 \
 --g_steps 200 \
