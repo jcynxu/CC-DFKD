@@ -3,7 +3,7 @@
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: oh: 0
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: act: 0
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: balance: 0
-[08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: save_dir: run/sample_gapssg
+[08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: save_dir: run/sample_CC-DFKD
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: cmi_init: None
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: data_root: data-path
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: teacher: wrn40_2
@@ -29,7 +29,7 @@
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: multiprocessing_distributed: False
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: fp16: False
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: seed: 0
-[08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: log_tag: -log_gapssg
+[08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: log_tag: -log_CC-DFKD
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: workers: 4
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: start_epoch: 0
 [08/06 19:32:02] cifar100-wrn40_2-wrn16_2 INFO: momentum: 0.9
