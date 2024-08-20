@@ -13,8 +13,8 @@ python datafree_kd.py \
 --gpu 1 \
 --seed 0 \
 --T 20 \
---save_dir run/sample_gapssg \
---log_tag log_gapssg \
+--save_dir run/sample_CC-DFKD \
+--log_tag log_CC-DFKD \
 --co_alpha 5 \
 --co_beta 1 \
 --co_gamma 0.7 \
