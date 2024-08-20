@@ -209,9 +209,9 @@ class Synthesizer(BaseSynthesis):
             {'params': fast_generator.parameters()},
             {'params': [z], 'lr': self.lr_z}
         ], lr=self.lr_g, betas=[0.5, 0.999])
-
+        inputs = fast_generator(z)
         for it in range(self.iterations):
-            #inputs = fast_generator(z)
+
             #global_view, local_view = self.aug(inputs) # crop and normalize
 
             #############################################
@@ -259,10 +259,10 @@ class Synthesizer(BaseSynthesis):
             with torch.no_grad():
                 if best_cost > loss_G.item() or best_inputs is None:
                     best_cost = loss_G.item()
-                    best_inputs = inputs.data  
+                      
                     return {"synthetic": best_inputs}
             '''
-
+            best_inputs = inputs.data
             optimizer.zero_grad()
             loss_G.backward()
             optimizer.step()
@@ -270,7 +270,7 @@ class Synthesizer(BaseSynthesis):
         '''
         '''
         # save best inputs and reset data iter
-        # self.data_pool.add( best_inputs )
+        self.data_pool.add( best_inputs )
         self.student.train()
         dst = self.data_pool.get_dataset(transform=self.transform)
         if self.init_dataset is not None:
