@@ -19,7 +19,7 @@ Install pytorch and other dependencies:
 
 To train wrn16_2 (student model) with wrn40_2 (teacher model) on CIFAR-100, run the following command:
 
-    bash scripts/gapssg/cifar100_wrn40_2_wrn16_2.sh
+    bash scripts/CC-DFKD/cifar100_wrn40_2_wrn16_2.sh
 
 
 
