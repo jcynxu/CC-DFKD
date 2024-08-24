@@ -22,7 +22,8 @@ To train wrn16_2 (student model) with wrn40_2 (teacher model) on CIFAR-100, run 
     bash scripts/CC-DFKD/cifar100_wrn40_2_wrn16_2.sh
 
 
+### Log
 
-
+You can find the log we ran on the CIFAR100 dataset WRN40_2/WRN16_2 teacher-student pair in the directory `checkpoints/datafree-CC-DFKD`
 
 
